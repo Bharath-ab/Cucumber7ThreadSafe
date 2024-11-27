@@ -1,6 +1,7 @@
 package stepdefinitons;
 import io.cucumber.java.en.Given;
 import io.qameta.allure.Step;
+import org.junit.jupiter.api.Assertions;
 
 import static io.qameta.allure.Allure.step;
 
@@ -16,5 +17,6 @@ public class SampleSteps {
     @Given("I have dummy given file")
     public void iHaveDummyGivenFile() {
         step("Given I have dummy given file");
+        Assertions.fail("Test Fail Intentional");
     }
 }

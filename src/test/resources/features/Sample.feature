@@ -1,5 +1,5 @@
 Feature: Sample Cucumber Feature
-
+  @demo
   Scenario: Sample Test File
     Given I launched web browser
 
