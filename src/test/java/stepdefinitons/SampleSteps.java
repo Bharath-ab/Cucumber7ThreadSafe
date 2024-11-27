@@ -1,6 +1,5 @@
 package stepdefinitons;
 import io.cucumber.java.en.Given;
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 
 import static io.qameta.allure.Allure.step;
