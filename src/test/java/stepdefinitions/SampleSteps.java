@@ -1,4 +1,4 @@
-package stepdefinitons;
+package stepdefinitions;
 import io.cucumber.java.en.Given;
 import org.junit.jupiter.api.Assertions;
 
