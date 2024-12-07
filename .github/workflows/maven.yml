@@ -1,6 +1,10 @@
 
 name: Cucumber7ThreadSafe
 
+permissions:
+  contents: write
+  pages: write 
+
 on:
   push:
     branches: [ "master" ]
