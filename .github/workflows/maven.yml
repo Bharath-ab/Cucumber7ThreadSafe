@@ -1,4 +1,3 @@
-
 name: Cucumber7ThreadSafe
 
 permissions:
@@ -8,32 +7,45 @@ permissions:
 on:
   push:
     branches:
-      - master  # Trigger this action on push to the 'main' branch
+      - master  # Trigger this action on push to the 'master' branch
   workflow_dispatch:  # Allow manual triggers of the action
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      # Checkout the repository code
-      - name: Checkout code
-        uses: actions/checkout@v3
 
-      # Set up Java and Maven (if not already configured)
+    steps:
+      # Checkout the code
+      - uses: actions/checkout@v4
+
+      # Set up JDK 21
       - name: Set up JDK 21
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '21'
+          distribution: 'temurin'
+          cache: maven
 
-      # Install dependencies and generate Allure report using Maven
-      - name: Build and generate Allure report
+      # Run test with Maven
+      - name: Run test with maven
+        run: mvn clean compile test
+
+      # Install Allure commandline
+      - name: Install Allure commandline
         run: |
-          mvn clean compile test
-          mvn allure:serve
+          wget https://github.com/allure-framework/allure2/releases/download/2.24.0/allure-2.24.0.tgz
+          tar -zxvf allure-2.24.0.tgz
+          sudo mv allure-2.24.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+
+      # Generate Allure report
+      - name: Generate Allure report
+        run: |
+          allure generate target/allure-results --clean -o target/allure-report  # Generate the report
 
       # Deploy Allure report to GitHub Pages
       - name: Deploy Allure report to GitHub Pages
-        if: github.ref == 'refs/heads/master'  # Only deploy from the 'main' branch
+        if: github.ref == 'refs/heads/master'  # Only deploy from the 'master' branch
         run: |
           # Clean up any previous gh-pages directory if it exists
           if [ -d "gh-pages" ]; then
