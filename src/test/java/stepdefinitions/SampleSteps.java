@@ -16,6 +16,6 @@ public class SampleSteps {
     @Given("I have dummy given file")
     public void iHaveDummyGivenFile() {
         step("Given I have dummy given file");
-//        Assertions.fail("Test Fail Intentional");
+        Assertions.fail("Test Fail Intentional");
     }
 }
