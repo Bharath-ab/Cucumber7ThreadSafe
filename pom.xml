@@ -16,7 +16,7 @@
         <cucumber.version>7.20.1</cucumber.version>
         <junit.version>5.11.3</junit.version>
         <maven.surfire.version>3.5.2</maven.surfire.version>
-        <webdriver.manager.version>5.9.2</webdriver.manager.version>
+        <webdriver.manager.version>6.1.0</webdriver.manager.version>
         <allure.version>2.24.0</allure.version>
         <aspectj.version>1.9.21</aspectj.version>
         <selenium.version>4.27.0</selenium.version>
